@@ -14,4 +14,8 @@ When given a problem to solve (a new feature, a bug, etc) always go through the 
 
 ### Code Quality
 
-- Never include comments in your code, unless explicitly requested. Write self-documenting code through well name functions, variables, classes, etc.
+- Do not use comments in your code. Leverage well name functions, variables, classes, etc. so that your code is self-documenting.
+
+### File Naming Conventions
+
+...
