@@ -1,6 +1,8 @@
 ---
 ---
 
+@import "{{ site.theme }}";
+
 header {
   display: none !important;
 }
@@ -11,4 +13,10 @@ header {
 
 .site-header {
   display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  border: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
 }
