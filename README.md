@@ -5,5 +5,5 @@
 
 ## Blog
 
-- [Social Media](blog/social-media.md)
-- [The AI Paradox](blog/ai-paradox.md)
+- **[Social Media](blog/social-media.md)**
+- **[The AI Paradox](blog/ai-paradox.md)**
