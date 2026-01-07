@@ -1,6 +1,6 @@
 ## Projects
 
-- **[GitScribe](https://github.com/FayZ676/gitscribe):** An open source tool that connects LLMs to Git
+- **[GitScribe](https://github.com/FayZ676/gitscribe):** An open source cli tool for building custom commands and workflows on top git
 - **[Tasknotes](https://apps.apple.com/us/app/tasknotes-tasks-meet-habits/id6755319491):** My dream productivity app
 
 ## Blog
