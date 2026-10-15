@@ -123,10 +123,9 @@ export default function Home() {
           I'm an AI engineer in Portland, Oregon. I build LLM systems at work and apps of my own on the side.
         </p>
         <p className="bio">
-          At NetRoadshow, I build AI for the financial industry, including a service that transcribes financial
-          conference calls, and guardrails that keep sensitive financial data away from outside AI models. Before that,
-          I co-founded Aicon and built the backend of Captionit, a photo-caption app with about 10,000 users. I studied
-          software engineering at St. Cloud State University. Below are a few things I've made that I'm proud of.
+          My day job is building AI for the financial industry: LLM systems that have to be accurate, private, and
+          dependable enough for production. I've also co-founded a startup, and I studied software engineering at St.
+          Cloud State University. Outside of work, I make the apps and tools below.
         </p>
         <p className="social">
           <a className="chip" href="https://x.com/faizif5a">
