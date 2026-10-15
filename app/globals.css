@@ -71,6 +71,19 @@ main {
   margin-bottom: 88px;
 }
 
+.nameplate {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.portrait-photo {
+  width: clamp(4.5rem, 15vw, 8.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 h1 {
   font-size: clamp(4.5rem, 17vw, 10rem);
   font-weight: 600;
@@ -88,8 +101,44 @@ h1 {
 
 .social {
   display: flex;
-  gap: 24px;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Icons sit on the text's centerline and take its color */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
+.chip,
+.button,
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 16px;
+  border: 1.5px solid color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 999px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.chip:hover {
+  border-color: var(--ink);
+  background: var(--plate);
+}
+
+.button .icon {
+  width: 1.05em;
+  height: 1.05em;
 }
 
 /* Links */
@@ -114,7 +163,6 @@ button:focus-visible {
 }
 
 .button {
-  display: inline-block;
   padding: 12px 22px;
   border-radius: 999px;
   background: var(--action);
@@ -237,6 +285,7 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   a,
+  .chip,
   .button {
     transition: none;
   }
