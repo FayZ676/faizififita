@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
+import { Jost } from "next/font/google";
 import "./globals.css";
 
+const jost = Jost({ subsets: ["latin"], weight: ["400", "600"] });
+
 export const metadata: Metadata = {
-  title: { default: "faizififita", template: "%s | faizififita" },
+  title: "Faizi",
+  description: "Apps and tools I've built: /job, Quill, Verses, and an audiobook generator.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body>
-        <main>{children}</main>
-      </body>
+    <html lang="en" className={jost.className}>
+      <body>{children}</body>
     </html>
   );
 }
