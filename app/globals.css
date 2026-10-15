@@ -1,18 +1,24 @@
-/* Red means one thing on this page: you can click it */
+/* Red marks each project's main action and nothing else */
 :root {
   color-scheme: light dark;
-  --paper: #ffffff;
-  --ink: #000000;
-  --quiet: #6b6b6b;
+  --paper: #fafaf8;
+  --plate: #eeeeea;
+  --ink: #141414;
+  --quiet: #5c5c5c;
   --action: #c8102e;
+  --action-hover: #a50d26;
+  --on-action: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #000000;
-    --ink: #ffffff;
-    --quiet: #9a9a9a;
-    --action: #ff5a4e;
+    --paper: #18181a;
+    --plate: #242427;
+    --ink: #f2f2f0;
+    --quiet: #a3a3a3;
+    --action: #e0353b;
+    --action-hover: #f04d52;
+    --on-action: #ffffff;
   }
 }
 
@@ -27,106 +33,211 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 h1,
 h2,
 h3,
-p,
-ul {
+p {
   margin: 0;
-  padding: 0;
-  font-size: 1em;
-  font-weight: 600;
 }
 
-p,
-ul {
-  font-weight: 400;
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 main {
-  max-width: 62rem;
-  padding: 48px 16px 96px;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 56px 16px 120px;
 }
 
-header {
-  margin-bottom: 96px;
+/* Intro */
+
+.intro {
+  margin-bottom: 88px;
 }
 
 h1 {
-  font-size: clamp(4rem, 16vw, 9rem);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  font-size: clamp(4.5rem, 17vw, 10rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  margin-left: -0.04em;
 }
 
-/* Each section starts at a heavy rule, label first, content after */
-.section {
-  border-top: 4px solid var(--ink);
-  padding-top: 16px;
-  margin-bottom: 64px;
+.lede {
+  max-width: 22em;
+  margin-top: 28px;
+  font-size: 1.5rem;
+  line-height: 1.35;
 }
 
-.section > h2 {
-  margin-bottom: 24px;
-}
-
-.project + .project {
-  margin-top: 32px;
-}
-
-.project > div {
-  max-width: 34rem;
-}
-
-.links {
-  list-style: none;
+.social {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px 24px;
-  margin-top: 8px;
+  gap: 24px;
+  margin-top: 20px;
 }
 
-.note {
-  margin-left: 8px;
-  color: var(--quiet);
-}
+/* Links */
 
 a {
-  color: var(--action);
+  color: inherit;
   text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: text-decoration-color 150ms ease;
 }
 
 a:hover {
-  text-decoration-thickness: 4px;
+  text-decoration-color: currentColor;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 3px solid var(--action);
   outline-offset: 3px;
 }
 
-/* Wide screens: labels, names, and content each get their own column */
-@media (min-width: 800px) {
+.button {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--action);
+  color: var(--on-action);
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.button:hover {
+  background: var(--action-hover);
+}
+
+/* Projects */
+
+.project {
+  display: grid;
+  gap: 24px;
+  padding: 40px 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+}
+
+.plate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  padding: 7%;
+  border-radius: 12px;
+  background: var(--plate);
+  overflow: hidden;
+}
+
+.plate img,
+.plate video,
+.demo {
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 8px 28px rgb(0 0 0 / 0.12);
+}
+
+/* Images of any shape sit centered in the plate with an even margin around them */
+.plate img {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 86%;
+  max-height: 86%;
+}
+
+/* Phone screenshots get phone-like corners */
+.plate img.portrait {
+  border-radius: 20px;
+}
+
+.demo {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.demo video {
+  width: 100%;
+}
+
+/* The poster has its own play button drawn in, so the whole poster is the target */
+.demo-play {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.details h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.details > p {
+  max-width: 30em;
+  margin-top: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 24px;
+}
+
+.note {
+  margin-top: 10px;
+  color: var(--quiet);
+  font-size: 0.875rem;
+}
+
+@media (min-width: 880px) {
   main {
-    padding: 64px 48px 128px;
+    padding: 96px 48px 160px;
   }
 
-  .section {
-    display: grid;
-    grid-template-columns: 10rem 1fr;
-  }
-
-  .section > h2 {
-    margin-bottom: 0;
+  .intro {
+    margin-bottom: 120px;
   }
 
   .project {
-    display: grid;
-    grid-template-columns: 12rem 1fr;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 56px;
+    align-items: center;
+    padding: 56px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .button {
+    transition: none;
   }
 }
