@@ -119,7 +119,15 @@ export default function Home() {
           <img className="portrait-photo" src="/faizi.webp" alt="Faizi, smiling, on a boat by the water" width={480} height={480} />
           <h1>Faizi</h1>
         </div>
-        <p className="lede">I build apps and tools. These are some of my favorites.</p>
+        <p className="lede">
+          I'm an AI engineer in Portland, Oregon. I build LLM systems at work and apps of my own on the side.
+        </p>
+        <p className="bio">
+          At NetRoadshow, I build AI for the financial industry, including a service that transcribes financial
+          conference calls, and guardrails that keep sensitive financial data away from outside AI models. Before that,
+          I co-founded Aicon and built the backend of Captionit, a photo-caption app with about 10,000 users. I studied
+          software engineering at St. Cloud State University. Below are a few things I've made that I'm proud of.
+        </p>
         <p className="social">
           <a className="chip" href="https://x.com/faizif5a">
             <XIcon className="icon" />
