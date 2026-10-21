@@ -283,6 +283,29 @@ h1 span {
   letter-spacing: -0.03em;
 }
 
+/* A project's name links to its own section, for sharing; a # shows on hover */
+
+.project {
+  scroll-margin-top: 56px;
+}
+
+.anchor {
+  text-decoration: none;
+}
+
+.anchor::after {
+  content: "#";
+  margin-left: 0.3em;
+  color: var(--quiet);
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.anchor:hover::after,
+.anchor:focus-visible::after {
+  opacity: 1;
+}
+
 .details > p {
   max-width: 30em;
   margin-top: 12px;

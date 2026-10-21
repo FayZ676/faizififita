@@ -1,13 +1,18 @@
+import type { ReactNode } from "react";
 import { DemoVideo } from "./demo-video";
+import { latestRelease } from "./release";
+import { ReleaseNote } from "./release-note";
 import { DownloadIcon, ExternalIcon, GitHubIcon, XIcon, YouTubeIcon } from "./icons";
 
 type Link = { label: string; href: string };
 
 type Project = {
   name: string;
-  description: string;
+  description: ReactNode;
   // "download" saves a file, "github" opens the repo, "external" opens another site
   action: Link & { kind: "download" | "github" | "external"; note?: string };
+  // A GitHub repo and release download whose version and size join the note
+  release?: { repo: string; asset: string };
   source?: string;
   media:
     | { kind: "image"; src: string; alt: string; width: number; height: number }
@@ -30,14 +35,19 @@ const projects: Project[] = [
   },
   {
     name: "Quill",
-    description:
-      "A minimal Markdown editor for the Mac that combines my favorite features from my two favorite writing apps; IA Writer and Obsidian",
+    description: (
+      <>
+        A minimal Markdown editor for the Mac that combines my favorite features from my two favorite writing apps;{" "}
+        <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a>
+      </>
+    ),
     action: {
       label: "Download for Mac",
       href: "https://github.com/FayZ676/quill/releases/latest/download/Quill.dmg",
       kind: "download",
-      note: "macOS 13 or later, 1.5 MB",
+      note: "macOS 13 or later",
     },
+    release: { repo: "FayZ676/quill", asset: "Quill.dmg" },
     source: "https://github.com/FayZ676/quill",
     media: {
       kind: "image",
@@ -111,12 +121,21 @@ function ActionButton({ action }: { action: Project["action"] }) {
   );
 }
 
+// The project's anchor, for links straight to it: "Audiobook generator" is #audiobook-generator
+function slug(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
 const social: Link[] = [
   { label: "X", href: "https://x.com/faizif5a" },
   { label: "YouTube", href: "https://www.youtube.com/@faizif5a" },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const releases = await Promise.all(
+    projects.map((project) => project.release && latestRelease(project.release.repo, project.release.asset)),
+  );
+
   return (
     <>
       <nav className="nav">
@@ -148,13 +167,17 @@ export default function Home() {
         </header>
 
         <h2 className="section-title">Projects</h2>
-        {projects.map((project) => (
-          <article key={project.name} className="project">
+        {projects.map((project, i) => (
+          <article key={project.name} id={slug(project.name)} className="project">
             <div className="plate">
               <Media media={project.media} />
             </div>
             <div className="details">
-              <h3>{project.name}</h3>
+              <h3>
+                <a className="anchor" href={`#${slug(project.name)}`}>
+                  {project.name}
+                </a>
+              </h3>
               <p>{project.description}</p>
               <div className="actions">
                 <ActionButton action={project.action} />
@@ -165,7 +188,11 @@ export default function Home() {
                   </a>
                 )}
               </div>
-              {project.action.note && <p className="note">{project.action.note}</p>}
+              {project.release ? (
+                <ReleaseNote {...project.release} note={project.action.note ?? ""} initial={releases[i] ?? null} />
+              ) : (
+                project.action.note && <p className="note">{project.action.note}</p>
+              )}
             </div>
           </article>
         ))}
