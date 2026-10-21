@@ -18,7 +18,7 @@ const projects: Project[] = [
   {
     name: "/job",
     description:
-      "A free, open-source Claude Code skill that searches job boards, tailors your resume to each posting, and fills in the application for you to submit.",
+      "A free, open-source job search and networking tool that runs on Claude Code and Next JS. It finds leads, their email addresses, and helps you draft cold emails.",
     action: { label: "Visit slashjob.co", href: "https://slashjob.co", kind: "external" },
     source: "https://github.com/slashjob/job",
     media: {
@@ -31,10 +31,10 @@ const projects: Project[] = [
   {
     name: "Quill",
     description:
-      "A minimal Markdown editor for the Mac, with focus mode and typewriter scrolling. Your writing stays as plain-text files in a folder.",
+      "A minimal Markdown editor for the Mac that combines my favorite features from my two favorite writing apps; IA Writer and Obsidian",
     action: {
       label: "Download for Mac",
-      href: "https://github.com/FayZ676/quill/releases/download/v1.0.0/Quill-1.0.0.dmg",
+      href: "https://github.com/FayZ676/quill/releases/latest/download/Quill.dmg",
       kind: "download",
       note: "macOS 13 or later, 1.5 MB",
     },
@@ -50,7 +50,7 @@ const projects: Project[] = [
   {
     name: "Verses",
     description:
-      "An iPhone and iPad app for memorizing Bahá'í prayers, the Hidden Words, and Ruhi quotations. Hide a word, recite what's left, and hide a few more each time.",
+      "An iPhone and iPad app for memorizing Bahá'í scripture by reciting out loud or in your head.",
     action: {
       label: "View on the App Store",
       href: "https://apps.apple.com/us/app/verses-bah%C3%A1%C3%AD-memorization/id6788610583",
@@ -67,7 +67,7 @@ const projects: Project[] = [
   {
     name: "Audiobook generator",
     description:
-      "Turns a book into a multi-voice audiobook. It clones a narrator's voice from ten seconds of audio and gives every character in the text its own voice.",
+      "An AI generated audiobook studio. Put in your your text and get an audiobook in minutes. Every character has their own voice, and you can add new voices with 10 seconds of audio.",
     action: {
       label: "View on GitHub",
       href: "https://github.com/FayZ676/audiobook-generator",
