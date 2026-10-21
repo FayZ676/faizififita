@@ -111,56 +111,76 @@ function ActionButton({ action }: { action: Project["action"] }) {
   );
 }
 
+const social: Link[] = [
+  { label: "X", href: "https://x.com/faizif5a" },
+  { label: "YouTube", href: "https://www.youtube.com/@faizif5a" },
+];
+
 export default function Home() {
   return (
-    <main>
-      <header className="intro">
-        <div className="nameplate">
-          <img className="portrait-photo" src="/faizi.webp" alt="Faizi, smiling, on a boat by the water" width={480} height={480} />
-          <h1>Faizi</h1>
+    <>
+      <nav className="nav">
+        <div className="nav-inner">
+          <a className="wordmark" href="/">
+            Faizi Fifita
+          </a>
+          <div className="nav-links">
+            {social.map((link) => (
+              <a key={link.label} href={link.href} aria-label={link.label}>
+                {link.label === "X" ? <XIcon className="icon" /> : <YouTubeIcon className="icon" />}
+              </a>
+            ))}
+          </div>
         </div>
-        <p className="lede">
-          I'm an AI engineer in Portland, Oregon. I build LLM systems at work and apps of my own on the side.
-        </p>
-        <p className="bio">
-          My day job is building AI for the financial industry: LLM systems that have to be accurate, private, and
-          dependable enough for production. I've also co-founded a startup, and I studied software engineering at St.
-          Cloud State University. Outside of work, I make the apps and tools below.
-        </p>
-        <p className="social">
-          <a className="chip" href="https://x.com/faizif5a">
-            <XIcon className="icon" />
-            X
-          </a>
-          <a className="chip" href="https://www.youtube.com/@faizif5a">
-            <YouTubeIcon className="icon" />
-            YouTube
-          </a>
-        </p>
-      </header>
+      </nav>
 
-      <h2 className="visually-hidden">Projects</h2>
-      {projects.map((project) => (
-        <article key={project.name} className="project">
-          <div className="plate">
-            <Media media={project.media} />
-          </div>
-          <div className="details">
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
-            <div className="actions">
-              <ActionButton action={project.action} />
-              {project.source && (
-                <a className="source" href={project.source}>
-                  <GitHubIcon className="icon" />
-                  Source
-                </a>
-              )}
+      <main>
+        <header className="intro">
+          <img className="portrait-photo" src="/faizi.webp" alt="Faizi, smiling, against an orange background" width={400} height={400} />
+          <h1>
+            AI engineer in Portland, Oregon. <span>I build LLM systems at work and apps of my own on the side.</span>
+          </h1>
+          <p className="bio">
+            My day job is building AI for the financial industry: LLM systems that have to be accurate, private, and
+            dependable enough for production. I've also co-founded a startup, and I studied software engineering at St.
+            Cloud State University. Outside of work, I make the apps and tools below.
+          </p>
+        </header>
+
+        <h2 className="section-title">Projects</h2>
+        {projects.map((project) => (
+          <article key={project.name} className="project">
+            <div className="plate">
+              <Media media={project.media} />
             </div>
-            {project.action.note && <p className="note">{project.action.note}</p>}
-          </div>
-        </article>
-      ))}
-    </main>
+            <div className="details">
+              <h3>{project.name}</h3>
+              <p>{project.description}</p>
+              <div className="actions">
+                <ActionButton action={project.action} />
+                {project.source && (
+                  <a className="button secondary" href={project.source}>
+                    <GitHubIcon className="icon" />
+                    Source
+                  </a>
+                )}
+              </div>
+              {project.action.note && <p className="note">{project.action.note}</p>}
+            </div>
+          </article>
+        ))}
+      </main>
+
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} Faizi Fifita</p>
+        <p className="footer-links">
+          {social.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </p>
+      </footer>
+    </>
   );
 }
