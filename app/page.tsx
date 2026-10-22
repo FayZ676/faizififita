@@ -143,13 +143,11 @@ export default async function Home() {
       <main>
         <header className="intro">
           <img className="portrait-photo" src="/faizi.webp" alt="Faizi, smiling, against an orange background" width={400} height={400} />
-          <h1>
-            AI engineer in Portland, Oregon. <span>I build LLM systems at work and apps of my own on the side.</span>
-          </h1>
+          <h1>Building is my love language.</h1>
           <p className="bio">
-            My day job is building AI for the financial industry: LLM systems that have to be accurate, private, and
-            dependable enough for production. I've also co-founded a startup, and I studied software engineering at St.
-            Cloud State University. Outside of work, I make the apps and tools below.
+            I'm Faizi, a software engineer, husband, and dad of two boys. Every app I make is my way of saying <i>I have this problem too and I made you something</i>. My day job is
+            building AI tools for banking and finance. Outside of work I build things to make my life and the lives of
+            the people I care about a little better.
           </p>
         </header>
 
