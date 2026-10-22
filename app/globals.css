@@ -172,6 +172,10 @@ h1 span {
   font-size: 1.0625rem;
 }
 
+.bio + .bio {
+  margin-top: 16px;
+}
+
 .section-title {
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);

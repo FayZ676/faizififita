@@ -145,9 +145,12 @@ export default async function Home() {
           <img className="portrait-photo" src="/faizi.webp" alt="Faizi, smiling, against an orange background" width={400} height={400} />
           <h1>Building is my love language.</h1>
           <p className="bio">
-            I'm Faizi, a software engineer, husband, and dad of two boys. Every app I make is my way of saying <i>I have this problem too and I made you something</i>. My day job is
+            I'm Faizi, a software engineer, husband, and dad of two boys. My day job is
             building AI tools for banking and finance. Outside of work I build things to make my life and the lives of
             the people I care about a little better.
+          </p>
+          <p className="bio">
+            Every app I make is my way of saying <i>I have this problem too and I made you something</i>.
           </p>
         </header>
 
