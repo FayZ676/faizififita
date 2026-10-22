@@ -226,11 +226,15 @@ h1 span {
   display: grid;
   place-items: center;
   aspect-ratio: 4 / 3;
-  padding: 7%;
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  background: radial-gradient(120% 80% at 50% 0%, var(--paper) 0%, var(--plate) 70%);
-  overflow: hidden;
+}
+
+/* A plate that links to a project's own page */
+a.plate img {
+  transition: transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+a.plate:hover img {
+  transform: scale(1.015);
 }
 
 .plate img,
@@ -241,15 +245,15 @@ h1 span {
   box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(0 0 0 / 0.04), 0 16px 40px -8px rgb(0 0 0 / 0.18);
 }
 
-/* Images of any shape sit centered in the plate with an even margin around them */
+/* Images of any shape sit centered in the plate */
 .plate img {
   position: absolute;
   inset: 0;
   margin: auto;
   width: auto;
   height: auto;
-  max-width: 86%;
-  max-height: 86%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Phone screenshots get phone-like corners */
@@ -301,6 +305,11 @@ h1 span {
   transition: opacity 150ms ease;
 }
 
+/* A name that links to the project's own page shows an arrow instead */
+.anchor.page::after {
+  content: "→";
+}
+
 .anchor:hover::after,
 .anchor:focus-visible::after {
   opacity: 1;
@@ -324,6 +333,96 @@ h1 span {
   margin-top: 12px;
   color: var(--quiet);
   font-size: 0.8125rem;
+}
+
+/* A project's own page */
+
+.showcase .section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-icon {
+  width: 80px;
+  aspect-ratio: 1;
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px var(--line), 0 8px 24px -8px rgb(0 0 0 / 0.2);
+}
+
+.showcase {
+  margin-top: 96px;
+  scroll-margin-top: 56px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 28px 48px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.features p {
+  margin-top: 4px;
+  color: var(--quiet);
+  font-size: 0.9375rem;
+}
+
+.showcase-text {
+  margin-top: 28px;
+}
+
+.showcase-text > p {
+  max-width: 34em;
+  color: var(--quiet);
+}
+
+.stage {
+  margin-top: 48px;
+}
+
+.stage img {
+  margin: 0 auto;
+  box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(0 0 0 / 0.04), 0 24px 56px -12px rgb(0 0 0 / 0.22);
+}
+
+.stage .mac {
+  border-radius: 14px;
+}
+
+/* Screenshots get the rounded corners of the device they came from */
+.phones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4%;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.stage .phone {
+  border-radius: 12% / 5.5%;
+}
+
+.stage .tablet {
+  max-width: min(100%, 36rem);
+  border-radius: 3% / 2.2%;
+}
+
+/* Not out yet: looks like a button but does nothing */
+.button.soon,
+.button.soon:hover {
+  border-style: dashed;
+  border-color: var(--line-strong);
+  color: var(--quiet);
+  cursor: default;
 }
 
 /* Footer */
@@ -371,6 +470,14 @@ h1 span {
 
   .intro {
     margin-bottom: 112px;
+  }
+
+  .showcase {
+    margin-top: 128px;
+  }
+
+  .stage {
+    margin-top: 64px;
   }
 
   .project {

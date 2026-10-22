@@ -71,3 +71,21 @@ export function ExternalIcon(props: IconProps) {
     </Line>
   );
 }
+
+export function LaptopIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z" />
+      <path d="M20.054 15.987H3.946" />
+    </Line>
+  );
+}
+
+export function PhoneIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+      <path d="M12 18h.01" />
+    </Line>
+  );
+}

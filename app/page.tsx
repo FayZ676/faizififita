@@ -2,7 +2,9 @@ import type { ReactNode } from "react";
 import { DemoVideo } from "./demo-video";
 import { latestRelease } from "./release";
 import { ReleaseNote } from "./release-note";
-import { DownloadIcon, ExternalIcon, GitHubIcon, XIcon, YouTubeIcon } from "./icons";
+import { DownloadIcon, ExternalIcon, GitHubIcon } from "./icons";
+import { quillDownload, quillRelease, quillSource } from "./quill/release";
+import { Footer, Nav } from "./site";
 
 type Link = { label: string; href: string };
 
@@ -14,6 +16,8 @@ type Project = {
   // A GitHub repo and release download whose version and size join the note
   release?: { repo: string; asset: string };
   source?: string;
+  // A page of its own that the name and screenshot link to
+  page?: string;
   media:
     | { kind: "image"; src: string; alt: string; width: number; height: number }
     | { kind: "video"; src: string; poster: string; label: string };
@@ -37,24 +41,25 @@ const projects: Project[] = [
     name: "Quill",
     description: (
       <>
-        A minimal Markdown editor for the Mac that combines my favorite features from my two favorite writing apps;{" "}
+        A minimal Markdown editor for the Mac (and soon iPhone and iPad) that combines my favorite features from my two favorite writing apps;{" "}
         <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a>
       </>
     ),
     action: {
       label: "Download for Mac",
-      href: "https://github.com/FayZ676/quill/releases/latest/download/Quill.dmg",
+      href: quillDownload,
       kind: "download",
       note: "macOS 13 or later",
     },
-    release: { repo: "FayZ676/quill", asset: "Quill.dmg" },
-    source: "https://github.com/FayZ676/quill",
+    release: quillRelease,
+    source: quillSource,
+    page: "/quill",
     media: {
       kind: "image",
       src: "/projects/quill.webp",
       alt: "Quill in dark mode with focus mode on: the heading is sharp and the paragraphs below are dimmed.",
       width: 1600,
-      height: 1105,
+      height: 1058,
     },
   },
   {
@@ -126,11 +131,6 @@ function slug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-const social: Link[] = [
-  { label: "X", href: "https://x.com/faizif5a" },
-  { label: "YouTube", href: "https://www.youtube.com/@faizif5a" },
-];
-
 export default async function Home() {
   const releases = await Promise.all(
     projects.map((project) => project.release && latestRelease(project.release.repo, project.release.asset)),
@@ -138,20 +138,7 @@ export default async function Home() {
 
   return (
     <>
-      <nav className="nav">
-        <div className="nav-inner">
-          <a className="wordmark" href="/">
-            Faizi Fifita
-          </a>
-          <div className="nav-links">
-            {social.map((link) => (
-              <a key={link.label} href={link.href} aria-label={link.label}>
-                {link.label === "X" ? <XIcon className="icon" /> : <YouTubeIcon className="icon" />}
-              </a>
-            ))}
-          </div>
-        </div>
-      </nav>
+      <Nav />
 
       <main>
         <header className="intro">
@@ -169,12 +156,21 @@ export default async function Home() {
         <h2 className="section-title">Projects</h2>
         {projects.map((project, i) => (
           <article key={project.name} id={slug(project.name)} className="project">
-            <div className="plate">
-              <Media media={project.media} />
-            </div>
+            {project.page ? (
+              <a className="plate" href={project.page} aria-label={`More about ${project.name}`}>
+                <Media media={project.media} />
+              </a>
+            ) : (
+              <div className="plate">
+                <Media media={project.media} />
+              </div>
+            )}
             <div className="details">
               <h3>
-                <a className="anchor" href={`#${slug(project.name)}`}>
+                <a
+                  className={project.page ? "anchor page" : "anchor"}
+                  href={project.page ?? `#${slug(project.name)}`}
+                >
                   {project.name}
                 </a>
               </h3>
@@ -198,16 +194,7 @@ export default async function Home() {
         ))}
       </main>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Faizi Fifita</p>
-        <p className="footer-links">
-          {social.map((link) => (
-            <a key={link.label} href={link.href}>
-              {link.label}
-            </a>
-          ))}
-        </p>
-      </footer>
+      <Footer />
     </>
   );
 }
