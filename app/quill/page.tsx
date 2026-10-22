@@ -6,10 +6,13 @@ import { ReleaseNote } from "../release-note";
 import { Footer, Nav } from "../site";
 import { quillDownload, quillRelease, quillSource } from "./release";
 
+const description =
+  "Quill is a minimal Markdown editor for the Mac, iPhone and iPad, with focus mode and typewriter scrolling.";
+
 export const metadata: Metadata = {
-  title: "Quill",
-  description:
-    "Quill is a minimal Markdown editor for the Mac, iPhone and iPad, with focus mode and typewriter scrolling.",
+  title: "Quill — a quiet place to write",
+  description,
+  openGraph: { title: "Quill — a quiet place to write", description, url: "/quill", siteName: "Faizi Fifita", type: "website" },
 };
 
 const features: { title: string; text: ReactNode }[] = [
