@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { DemoVideo } from "./demo-video";
 import { latestRelease } from "./release";
 import { ReleaseNote } from "./release-note";
 import { DownloadIcon, ExternalIcon, GitHubIcon } from "./icons";
@@ -16,11 +15,11 @@ type Project = {
   // A GitHub repo and release download whose version and size join the note
   release?: { repo: string; asset: string };
   source?: string;
+  // The app's icon, shown beside its name
+  icon?: string;
   // A page of its own that the name and screenshot link to
   page?: string;
-  media:
-    | { kind: "image"; src: string; alt: string; width: number; height: number }
-    | { kind: "video"; src: string; poster: string; label: string };
+  media: { src: string; alt: string; width: number; height: number };
 };
 
 const projects: Project[] = [
@@ -28,13 +27,14 @@ const projects: Project[] = [
     name: "/job",
     description:
       "A free, open-source job search and networking tool that runs on Claude Code and Next JS. It finds leads, their email addresses, and helps you draft cold emails.",
-    action: { label: "Visit slashjob.co", href: "https://slashjob.co", kind: "external" },
-    source: "https://github.com/slashjob/job",
+    action: { label: "View on GitHub", href: "https://github.com/slashjob/job", kind: "github" },
+    page: "/job",
+    icon: "/job/icon.svg",
     media: {
-      kind: "video",
-      src: "/projects/job.mp4",
-      poster: "/projects/job-poster.webp",
-      label: "Play the /job demo video",
+      src: "/job/feed.webp",
+      alt: "The /job dashboard: a feed of companies found in the news, each with why it matches one of your projects.",
+      width: 1600,
+      height: 1440,
     },
   },
   {
@@ -54,8 +54,8 @@ const projects: Project[] = [
     release: quillRelease,
     source: quillSource,
     page: "/quill",
+    icon: "/quill/icon.webp",
     media: {
-      kind: "image",
       src: "/projects/quill.webp",
       alt: "Quill in dark mode with focus mode on: the heading is sharp and the paragraphs below are dimmed.",
       width: 1600,
@@ -71,8 +71,8 @@ const projects: Project[] = [
       href: "https://apps.apple.com/us/app/verses-bah%C3%A1%C3%AD-memorization/id6788610583",
       kind: "external",
     },
+    icon: "/projects/verses-icon.webp",
     media: {
-      kind: "image",
       src: "/projects/verses.webp",
       alt: "Verses on iPhone, showing a prayer with some words hidden as blanks.",
       width: 736,
@@ -89,7 +89,6 @@ const projects: Project[] = [
       kind: "github",
     },
     media: {
-      kind: "image",
       src: "/projects/audiobook.webp",
       alt: "The audiobook generator generating narration for a chapter, with each line of dialogue assigned to a character's voice.",
       width: 1600,
@@ -99,9 +98,6 @@ const projects: Project[] = [
 ];
 
 function Media({ media }: { media: Project["media"] }) {
-  if (media.kind === "video") {
-    return <DemoVideo src={media.src} poster={media.poster} label={media.label} />;
-  }
   const portrait = media.height > media.width;
   return (
     <img
@@ -168,6 +164,9 @@ export default async function Home() {
             )}
             <div className="details">
               <h3>
+                {project.icon && (
+                  <img className="project-icon" src={project.icon} alt="" width={256} height={256} loading="lazy" />
+                )}
                 <a
                   className={project.page ? "anchor page" : "anchor"}
                   href={project.page ?? `#${slug(project.name)}`}

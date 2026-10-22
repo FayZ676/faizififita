@@ -47,8 +47,7 @@ p {
   margin: 0;
 }
 
-img,
-video {
+img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -241,9 +240,7 @@ a.plate:hover img {
   transform: scale(1.015);
 }
 
-.plate img,
-.plate video,
-.demo {
+.plate img {
   max-height: 100%;
   border-radius: 14px;
   box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(0 0 0 / 0.04), 0 16px 40px -8px rgb(0 0 0 / 0.18);
@@ -265,26 +262,18 @@ a.plate:hover img {
   border-radius: 24px;
 }
 
-.demo {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.demo video {
-  width: 100%;
-}
-
-/* The poster has its own play button drawn in, so the whole poster is the target */
-.demo-play {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
+/* An app's icon sits to the left of its name */
+.project-icon {
+  width: 44px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px var(--line), 0 4px 12px -4px rgb(0 0 0 / 0.2);
 }
 
 .details h3 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   font-size: 1.75rem;
   font-weight: 600;
   line-height: 1.15;
@@ -400,6 +389,17 @@ a.plate:hover img {
 
 .stage .mac {
   border-radius: 14px;
+}
+
+/* A line to copy, like /job's install prompt */
+.snippet {
+  max-width: 44em;
+  margin-top: 28px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--plate);
+  font: 0.875rem/1.6 ui-monospace, SFMono-Regular, Menlo, monospace;
+  overflow-wrap: anywhere;
 }
 
 /* Screenshots get the rounded corners of the device they came from */
