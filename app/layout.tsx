@@ -8,7 +8,7 @@ const description =
   "I'm Faizi Fifita, an AI engineer in Portland, Oregon. Apps and tools I've built: /job, Quill, Verses, and an audiobook generator.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://faizififita.vercel.app"),
+  metadataBase: new URL("https://faizififita.com"),
   title: "Faizi",
   description,
   openGraph: { title: "Faizi Fifita", description, url: "/", siteName: "Faizi Fifita", type: "website" },
