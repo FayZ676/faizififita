@@ -24,20 +24,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "/job",
-    description:
-      "A free, open-source job search and networking tool that runs on Claude Code and Next JS. It finds leads, their email addresses, and helps you draft cold emails.",
-    action: { label: "View on GitHub", href: "https://github.com/slashjob/job", kind: "github" },
-    page: "/job",
-    icon: "/job/icon.svg",
-    media: {
-      src: "/job/feed.webp",
-      alt: "The /job dashboard: a feed of companies found in the news, each with why it matches one of your projects.",
-      width: 1600,
-      height: 1440,
-    },
-  },
-  {
     name: "Quill",
     description: (
       <>
@@ -77,6 +63,33 @@ const projects: Project[] = [
       alt: "Verses on iPhone, showing a prayer with some words hidden as blanks.",
       width: 736,
       height: 1600,
+    },
+  },
+  {
+    name: "Bahá'í Daily Trivia",
+    description:
+      "A daily Bahá'í trivia game. Five new questions every day, from easy to hard, and everyone gets the same ones. Every question cites its source in the Bahá'í Reference Library.",
+    action: { label: "Play today's questions", href: "https://www.bahaidaily.app", kind: "external" },
+    icon: "/projects/trivia-icon.svg",
+    media: {
+      src: "/projects/trivia.webp",
+      alt: "Bahá'í Daily Trivia on iPhone, showing the day's first question with four answers to choose from.",
+      width: 736,
+      height: 1593,
+    },
+  },
+  {
+    name: "/job",
+    description:
+      "A free, open-source job search and networking tool that runs on Claude Code and Next JS. It finds leads, their email addresses, and helps you draft cold emails.",
+    action: { label: "View on GitHub", href: "https://github.com/slashjob/job", kind: "github" },
+    page: "/job",
+    icon: "/job/icon.svg",
+    media: {
+      src: "/job/feed.webp",
+      alt: "The /job dashboard: a feed of companies found in the news, each with why it matches one of your projects.",
+      width: 1600,
+      height: 1440,
     },
   },
   {
@@ -122,9 +135,14 @@ function ActionButton({ action }: { action: Project["action"] }) {
   );
 }
 
-// The project's anchor, for links straight to it: "Audiobook generator" is #audiobook-generator
+// The project's anchor, for links straight to it: "Audiobook generator" is #audiobook-generator, "Bahá'í" is #bahai
 function slug(name: string) {
-  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return name
+    .normalize("NFD")
+    .replace(/[̀-ͯ'’]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
 
 export default async function Home() {
