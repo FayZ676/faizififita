@@ -1,7 +1,19 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
-import { DownloadIcon, GitHubIcon, LaptopIcon, PhoneIcon } from "../icons";
+import type { ComponentType, ReactNode } from "react";
+import {
+  CloudIcon,
+  DownloadIcon,
+  EyeIcon,
+  FileTextIcon,
+  GitHubIcon,
+  GraphIcon,
+  LaptopIcon,
+  LinkIcon,
+  PhoneIcon,
+  TextCursorIcon,
+} from "../icons";
 import { latestRelease } from "../release";
+import { Gallery, type Shot } from "../gallery";
 import { ReleaseNote } from "../release-note";
 import { Footer, Nav } from "../site";
 import { quillDownload, quillRelease, quillSource } from "./release";
@@ -15,12 +27,20 @@ export const metadata: Metadata = {
   openGraph: { title: "Quill — a quiet place to write", description, url: "/quill", siteName: "Faizi Fifita", type: "website" },
 };
 
-const features: { title: string; text: ReactNode }[] = [
-  { title: "Focus mode", text: "Dims everything except the sentence or paragraph you're writing." },
-  { title: "Typewriter scrolling", text: "The line you're on stays in the middle of the screen." },
-  { title: "Plain Markdown files", text: "Your writing lives in a folder you choose, organized however you like." },
+// The standouts, each with a line of its own
+const features: { title: string; icon: ComponentType<{ className?: string }>; text: ReactNode }[] = [
+  { title: "Focus mode", icon: EyeIcon, text: "Dims everything except the sentence or paragraph you're writing." },
+  { title: "Typewriter scrolling", icon: TextCursorIcon, text: "The line you're on stays in the middle of the screen." },
+  { title: "Wikilinks", icon: LinkIcon, text: "Link one note to another with [[double brackets]], as in Obsidian." },
+  { title: "Graph view", icon: GraphIcon, text: "See your notes and the links between them as a map you can wander around." },
+  {
+    title: "Plain Markdown files",
+    icon: FileTextIcon,
+    text: "Your writing lives in a folder you choose, organized however you like. Open an Obsidian vault and it just works.",
+  },
   {
     title: "iCloud sync",
+    icon: CloudIcon,
     text: (
       <>
         Keep your library in iCloud Drive and your files are there on every Mac, and soon your{" "}
@@ -28,15 +48,66 @@ const features: { title: string; text: ReactNode }[] = [
       </>
     ),
   },
-  { title: "Formatting shortcuts", text: "Bold, italic, links and more from the keyboard, highlighted as you type." },
-  { title: "iA Writer fonts", text: "Write in Mono, Duo or Quattro, at whatever size you like." },
-  { title: "Word count", text: "Words and reading time at the bottom of the page." },
 ];
 
-const phones = [
-  { src: "/quill/iphone-focus.webp", alt: "Quill on iPhone in focus mode: one sentence is sharp and the rest of the page is dimmed." },
-  { src: "/quill/iphone-markdown-dark.webp", alt: "Quill on iPhone in dark mode, showing an essay with Markdown headings, bold and italics." },
-  { src: "/quill/iphone-library.webp", alt: "Quill's library on iPhone: folders for essays, a journal and notes, and two drafts." },
+// Everything else, listed in brief under the standouts
+const moreFeatures = [
+  "Go To any note by typing part of its name",
+  "Markdown cheat sheet",
+  "Formatting shortcuts",
+  "Markdown highlighted as you type",
+  "Task lists you tick with a click",
+  "Numbered lists and dividers",
+  "Sans, Serif and Mono typefaces",
+  "Word count and reading time",
+  "Light, Dark or System appearance",
+  "Folder counts in the library",
+  "Move notes by typing a folder's path",
+  "Spelling and substitution options",
+  "Automatic updates on the Mac",
+];
+
+const macShots: Shot[] = [
+  {
+    src: "/quill/mac-filetree.webp",
+    alt: "Quill on the Mac with an Obsidian journal open: nested folders in the sidebar, each with a count of what it holds.",
+  },
+  {
+    src: "/quill/mac-focusmode.webp",
+    alt: "Quill on the Mac in focus mode with the sidebar and toolbar hidden: only the sentence being written is sharp.",
+  },
+  {
+    src: "/quill/mac-knowledgegraph.webp",
+    alt: "Quill's graph on the Mac: hundreds of notes as dots, with lines for the links between them.",
+  },
+].map((shot) => ({ ...shot, width: 1600, height: 1135, className: "mac" }));
+
+const deviceShots: Shot[] = [
+  ...[
+    {
+      src: "/quill/iphone-focus.webp",
+      alt: "Quill on iPhone in focus mode: the first sentence of an essay is sharp and the rest of the page is dimmed.",
+    },
+    {
+      src: "/quill/iphone-journal-dark.webp",
+      alt: "A journal entry in Quill on iPhone in dark mode, with ticked tasks and links to other notes.",
+    },
+    {
+      src: "/quill/iphone-graph-dark.webp",
+      alt: "Quill's graph on iPhone in dark mode: a cluster of linked notes, with a few on their own around it.",
+    },
+    {
+      src: "/quill/iphone-library.webp",
+      alt: "Quill's library on iPhone: folders for drafts, essays, family, a journal, notes and recipes, each with a count.",
+    },
+  ].map((shot) => ({ ...shot, width: 736, height: 1600, className: "phone" })),
+  {
+    src: "/quill/ipad-markdown-dark.webp",
+    alt: "An essay in Quill on iPad in dark mode, with Markdown headings, a list, a quote and links to other notes.",
+    width: 1200,
+    height: 1600,
+    className: "tablet",
+  },
 ];
 
 export default async function QuillPage() {
@@ -65,9 +136,16 @@ export default async function QuillPage() {
           <ul className="features">
             {features.map((feature) => (
               <li key={feature.title}>
+                <feature.icon className="feature-icon" />
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
               </li>
+            ))}
+          </ul>
+          <h3 className="more-features-title">And also</h3>
+          <ul className="more-features">
+            {moreFeatures.map((feature) => (
+              <li key={feature}>{feature}</li>
             ))}
           </ul>
         </section>
@@ -91,15 +169,7 @@ export default async function QuillPage() {
             </div>
             <ReleaseNote {...quillRelease} note="macOS 13 or later" initial={release} />
           </div>
-          <div className="stage">
-            <img
-              className="mac"
-              src="/projects/quill.webp"
-              alt="Quill on the Mac in dark mode with focus mode on: the heading is sharp and the paragraphs below are dimmed."
-              width={1600}
-              height={1058}
-            />
-          </div>
+          <Gallery shots={macShots} label="Quill on the Mac" className="stage" />
         </section>
 
         <section className="showcase" id="iphone-and-ipad">
@@ -118,21 +188,7 @@ export default async function QuillPage() {
               </span>
             </div>
           </div>
-          <div className="stage phones">
-            {phones.map((phone) => (
-              <img key={phone.src} className="phone" src={phone.src} alt={phone.alt} width={736} height={1600} loading="lazy" />
-            ))}
-          </div>
-          <div className="stage">
-            <img
-              className="tablet"
-              src="/quill/ipad-focus.webp"
-              alt="Quill on iPad in focus mode, with the Markdown toolbar above the keyboard."
-              width={1200}
-              height={1600}
-              loading="lazy"
-            />
-          </div>
+          <Gallery shots={deviceShots} label="Quill on iPhone and iPad" className="stage devices" />
         </section>
       </main>
 

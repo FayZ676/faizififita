@@ -56,10 +56,10 @@ const projects: Project[] = [
     page: "/quill",
     icon: "/quill/icon.webp",
     media: {
-      src: "/projects/quill.webp",
-      alt: "Quill in dark mode with focus mode on: the heading is sharp and the paragraphs below are dimmed.",
+      src: "/quill/mac-filetree.webp",
+      alt: "Quill on the Mac with an Obsidian journal open: nested folders in the sidebar, each with a count of what it holds.",
       width: 1600,
-      height: 1058,
+      height: 1135,
     },
   },
   {

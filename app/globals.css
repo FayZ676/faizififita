@@ -357,6 +357,19 @@ a.plate:hover img {
   list-style: none;
 }
 
+/* A small line icon on a soft tile, above each standout feature's name */
+.feature-icon {
+  display: block;
+  box-sizing: content-box;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--plate);
+  color: var(--ink);
+}
+
 .features h3 {
   font-size: 1.0625rem;
   font-weight: 600;
@@ -367,6 +380,23 @@ a.plate:hover img {
   margin-top: 4px;
   color: var(--quiet);
   font-size: 0.9375rem;
+}
+
+.more-features-title {
+  margin-top: 48px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.more-features {
+  columns: 14rem;
+  column-gap: 48px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--quiet);
+  font-size: 0.875rem;
+  line-height: 1.9;
 }
 
 .showcase-text {
@@ -388,7 +418,7 @@ a.plate:hover img {
 }
 
 .stage .mac {
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 /* A line to copy, like /job's install prompt */
@@ -403,21 +433,115 @@ a.plate:hover img {
 }
 
 /* Screenshots get the rounded corners of the device they came from */
-.phones {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 4%;
-  max-width: 52rem;
-  margin-inline: auto;
-}
-
 .stage .phone {
   border-radius: 12% / 5.5%;
 }
 
 .stage .tablet {
-  max-width: min(100%, 36rem);
   border-radius: 3% / 2.2%;
+}
+
+/* One screenshot at a time, each a full-width slide in a row that snaps into place */
+.gallery {
+  --shot-height: 34rem;
+}
+
+/* Phone and tablet screenshots stay small, about the size of the devices themselves */
+.gallery.devices {
+  --shot-height: 28rem;
+}
+
+.gallery-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  align-items: center;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-track:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Room around each screenshot for its shadow, which the scrolling row would otherwise cut off */
+.gallery-slide {
+  flex: 0 0 100%;
+  padding: 16px 0 56px;
+  scroll-snap-align: center;
+}
+
+/* As wide as the shot can be at the gallery's height, or the column's width when that's narrower,
+   so the whole screenshot always shows; --ratio is its width over its height */
+.stage .gallery-slide img {
+  width: min(100%, var(--shot-height) * var(--ratio));
+}
+
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.gallery-controls > button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: opacity 150ms, border-color 150ms;
+}
+
+.gallery-controls > button:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.gallery-controls > button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* The dots are small but their buttons are big enough to tap */
+.gallery-dots {
+  display: flex;
+}
+
+.gallery-dots button {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.gallery-dots button::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line-strong);
+  transition: width 200ms, background 200ms;
+}
+
+.gallery-dots button[aria-current="true"]::after {
+  width: 16px;
+  background: var(--ink);
 }
 
 /* Not out yet: looks like a button but does nothing */
@@ -483,6 +607,7 @@ a.plate:hover img {
   .stage {
     margin-top: 64px;
   }
+
 
   .project {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

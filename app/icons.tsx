@@ -89,3 +89,81 @@ export function PhoneIcon(props: IconProps) {
     </Line>
   );
 }
+
+export function ChevronLeftIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="m15 18-6-6 6-6" />
+    </Line>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="m9 18 6-6-6-6" />
+    </Line>
+  );
+}
+
+export function EyeIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+      <circle cx="12" cy="12" r="3" />
+    </Line>
+  );
+}
+
+export function TextCursorIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M17 22h-1a4 4 0 0 1-4-4V6a4 4 0 0 1 4-4h1" />
+      <path d="M7 22h1a4 4 0 0 0 4-4v-1" />
+      <path d="M7 2h1a4 4 0 0 1 4 4v1" />
+    </Line>
+  );
+}
+
+export function LinkIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </Line>
+  );
+}
+
+// Drawn after Quill's own graph button: three points in a triangle, joined by dotted lines
+export function GraphIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <circle cx="4" cy="4.5" r="2.5" />
+      <circle cx="20" cy="4.5" r="2.5" />
+      <circle cx="12" cy="19.5" r="2.5" />
+      {/* Zero-length dashes with round caps draw as dots, three to a side */}
+      <path d="M9 4.5h6.01" strokeDasharray="0 3" />
+      <path d="M6.35 8.91l3.3 6.18M17.65 8.91l-3.3 6.18" strokeDasharray="0 3.5" />
+    </Line>
+  );
+}
+
+export function FileTextIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+      <path d="M10 9H8" />
+      <path d="M16 13H8" />
+      <path d="M16 17H8" />
+    </Line>
+  );
+}
+
+export function CloudIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+    </Line>
+  );
+}
