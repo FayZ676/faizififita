@@ -8,8 +8,8 @@ import {
   GitHubIcon,
   GraphIcon,
   LaptopIcon,
-  LinkIcon,
   PhoneIcon,
+  TerminalIcon,
   TextCursorIcon,
 } from "../icons";
 import { latestRelease } from "../release";
@@ -19,7 +19,7 @@ import { Footer, Nav } from "../site";
 import { quillDownload, quillRelease, quillSource } from "./release";
 
 const description =
-  "Quill is a minimal Markdown editor for the Mac, iPhone and iPad, with focus mode and typewriter scrolling.";
+  "Quill is a minimal Markdown editor for the Mac, iPhone and iPad, with focus mode, typewriter scrolling and a terminal for Claude Code or Codex.";
 
 export const metadata: Metadata = {
   title: "Quill — a quiet place to write",
@@ -31,8 +31,16 @@ export const metadata: Metadata = {
 const features: { title: string; icon: ComponentType<{ className?: string }>; text: ReactNode }[] = [
   { title: "Focus mode", icon: EyeIcon, text: "Dims everything except the sentence or paragraph you're writing." },
   { title: "Typewriter scrolling", icon: TextCursorIcon, text: "The line you're on stays in the middle of the screen." },
-  { title: "Wikilinks", icon: LinkIcon, text: "Link one note to another with [[double brackets]], as in Obsidian." },
-  { title: "Graph view", icon: GraphIcon, text: "See your notes and the links between them as a map you can wander around." },
+  {
+    title: "Wikilinks and graph",
+    icon: GraphIcon,
+    text: "Link one note to another with [[double brackets]], as in Obsidian, and see them all as a map you can wander around.",
+  },
+  {
+    title: "Terminal",
+    icon: TerminalIcon,
+    text: "Open a terminal under the page on the Mac and Claude Code or Codex starts knowing which note you have open, so you can ask about this note or your whole library.",
+  },
   {
     title: "Plain Markdown files",
     icon: FileTextIcon,
@@ -68,6 +76,10 @@ const moreFeatures = [
 ];
 
 const macShots: Shot[] = [
+  {
+    src: "/quill/mac-terminal.webp",
+    alt: "Quill on the Mac with an essay open and the terminal under it, where Claude Code suggests which other notes the essay should link to.",
+  },
   {
     src: "/quill/mac-filetree.webp",
     alt: "Quill on the Mac with an Obsidian journal open: nested folders in the sidebar, each with a count of what it holds.",
@@ -156,7 +168,10 @@ export default async function QuillPage() {
             Mac
           </h2>
           <div className="showcase-text">
-            <p>Your folders and files in a sidebar, the page in the middle, and nothing else in the way.</p>
+            <p>
+              Your folders and files in a sidebar, the page in the middle, and nothing else in the way. When you want a
+              second opinion, open the terminal under the page and ask Claude Code or Codex about the note you're on.
+            </p>
             <div className="actions">
               <a className="button" href={quillDownload}>
                 <DownloadIcon className="icon" />
