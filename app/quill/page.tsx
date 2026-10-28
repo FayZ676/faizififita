@@ -75,50 +75,55 @@ const moreFeatures = [
   "Automatic updates on the Mac",
 ];
 
+// Each gallery runs from the calmest screen to the busiest.
 const macShots: Shot[] = [
   {
-    src: "/quill/mac-terminal.webp",
-    alt: "Quill on the Mac with an essay open and the terminal under it, where Claude Code suggests which other notes the essay should link to.",
+    src: "/quill/mac-focusmode.webp",
+    alt: "Quill on the Mac in focus mode with the sidebar and toolbar hidden: only the sentence being written is sharp.",
   },
   {
     src: "/quill/mac-filetree.webp",
     alt: "Quill on the Mac with an Obsidian journal open: nested folders in the sidebar, each with a count of what it holds.",
   },
   {
-    src: "/quill/mac-focusmode.webp",
-    alt: "Quill on the Mac in focus mode with the sidebar and toolbar hidden: only the sentence being written is sharp.",
-  },
-  {
     src: "/quill/mac-knowledgegraph.webp",
     alt: "Quill's graph on the Mac: hundreds of notes as dots, with lines for the links between them.",
   },
+  {
+    src: "/quill/mac-terminal.webp",
+    alt: "Quill on the Mac with an essay open and the terminal under it, where Claude Code suggests which other notes the essay should link to.",
+  },
 ].map((shot) => ({ ...shot, width: 1600, height: 1135, className: "mac" }));
 
+const phone = { width: 736, height: 1600, className: "phone" };
+
 const deviceShots: Shot[] = [
-  ...[
-    {
-      src: "/quill/iphone-focus.webp",
-      alt: "Quill on iPhone in focus mode: the first sentence of an essay is sharp and the rest of the page is dimmed.",
-    },
-    {
-      src: "/quill/iphone-journal-dark.webp",
-      alt: "A journal entry in Quill on iPhone in dark mode, with ticked tasks and links to other notes.",
-    },
-    {
-      src: "/quill/iphone-graph-dark.webp",
-      alt: "Quill's graph on iPhone in dark mode: a cluster of linked notes, with a few on their own around it.",
-    },
-    {
-      src: "/quill/iphone-library.webp",
-      alt: "Quill's library on iPhone: folders for drafts, essays, family, a journal, notes and recipes, each with a count.",
-    },
-  ].map((shot) => ({ ...shot, width: 736, height: 1600, className: "phone" })),
+  {
+    src: "/quill/iphone-focus.webp",
+    alt: "Quill on iPhone in focus mode: the first sentence of an essay is sharp and the rest of the page is dimmed.",
+    ...phone,
+  },
+  {
+    src: "/quill/iphone-library.webp",
+    alt: "Quill's library on iPhone: folders for drafts, essays, family, a journal, notes and recipes, each with a count.",
+    ...phone,
+  },
+  {
+    src: "/quill/iphone-journal-dark.webp",
+    alt: "A journal entry in Quill on iPhone in dark mode, with ticked tasks and links to other notes.",
+    ...phone,
+  },
   {
     src: "/quill/ipad-markdown-dark.webp",
     alt: "An essay in Quill on iPad in dark mode, with Markdown headings, a list, a quote and links to other notes.",
     width: 1200,
     height: 1600,
     className: "tablet",
+  },
+  {
+    src: "/quill/iphone-graph-dark.webp",
+    alt: "Quill's graph on iPhone in dark mode: a cluster of linked notes, with a few on their own around it.",
+    ...phone,
   },
 ];
 
