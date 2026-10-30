@@ -177,3 +177,97 @@ export function TerminalIcon(props: IconProps) {
     </Line>
   );
 }
+
+export function EyeOffIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />
+      <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242" />
+      <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143" />
+      <path d="m2 2 20 20" />
+    </Line>
+  );
+}
+
+export function AudioLinesIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M2 10v3" />
+      <path d="M6 6v11" />
+      <path d="M10 3v18" />
+      <path d="M14 8v7" />
+      <path d="M18 5v13" />
+      <path d="M22 10v3" />
+    </Line>
+  );
+}
+
+export function MicIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M12 19v3" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <rect x="9" y="2" width="6" height="13" rx="3" />
+    </Line>
+  );
+}
+
+export function BookOpenIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M12 7v14" />
+      <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+    </Line>
+  );
+}
+
+export function LockIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    </Line>
+  );
+}
+
+export function SignalIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M2 20h.01" />
+      <path d="M7 20v-4" />
+      <path d="M12 20v-8" />
+      <path d="M17 20V8" />
+      <path d="M22 4v16" />
+    </Line>
+  );
+}
+
+export function BarChartIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M5 21v-6" />
+      <path d="M12 21V3" />
+      <path d="M19 21V9" />
+    </Line>
+  );
+}
+
+export function CalendarIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <path d="M8 2v4" />
+      <path d="M16 2v4" />
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+      <path d="M3 10h18" />
+    </Line>
+  );
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <Line {...props}>
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </Line>
+  );
+}

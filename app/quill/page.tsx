@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import type { ComponentType, ReactNode } from "react";
 import {
   CloudIcon,
   DownloadIcon,
@@ -14,8 +13,8 @@ import {
 } from "../icons";
 import { latestRelease } from "../release";
 import { Gallery, type Shot } from "../gallery";
+import { Features, Intro, ProductPage, Showcase, ShowcaseText, type Feature } from "../product";
 import { ReleaseNote } from "../release-note";
-import { Footer, Nav } from "../site";
 import { quillDownload, quillRelease, quillSource } from "./release";
 
 const description =
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 // The standouts, each with a line of its own
-const features: { title: string; icon: ComponentType<{ className?: string }>; text: ReactNode }[] = [
+const features: Feature[] = [
   { title: "Focus mode", icon: EyeIcon, text: "Dims everything except the sentence or paragraph you're writing." },
   { title: "Typewriter scrolling", icon: TextCursorIcon, text: "The line you're on stays in the middle of the screen." },
   {
@@ -131,88 +130,57 @@ export default async function QuillPage() {
   const release = await latestRelease(quillRelease.repo, quillRelease.asset);
 
   return (
-    <>
-      <Nav />
+    <ProductPage>
+      <Intro icon="/quill/icon.webp" name="Quill" tagline="A quiet place to write.">
+        <p className="bio">
+          Quill is a minimal Markdown editor that combines my favorite parts of{" "}
+          <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a> plus some of
+          my own thoughtful conveniences. Everything you write is a plain Markdown file in a folder you choose, so it opens in any other app, today or twenty
+          years from now.
+        </p>
+      </Intro>
 
-      <main>
-        <header className="intro">
-          <img className="app-icon" src="/quill/icon.webp" alt="Quill's icon" width={256} height={256} />
-          <h1>
-            Quill. <span>A quiet place to write.</span>
-          </h1>
-          <p className="bio">
-            Quill is a minimal Markdown editor that combines my favorite parts of{" "}
-            <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a> plus some of
-            my own thoughtful conveniences. Everything you write is a plain Markdown file in a folder you choose, so it opens in any other app, today or twenty
-            years from now.
-          </p>
-        </header>
+      <Features features={features} more={moreFeatures} />
 
-        <section className="showcase">
-          <h2 className="section-title">Features</h2>
-          <ul className="features">
-            {features.map((feature) => (
-              <li key={feature.title}>
-                <feature.icon className="feature-icon" />
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </li>
-            ))}
-          </ul>
-          <h3 className="more-features-title">And also</h3>
-          <ul className="more-features">
-            {moreFeatures.map((feature) => (
-              <li key={feature}>{feature}</li>
-            ))}
-          </ul>
-        </section>
+      <Showcase title="Mac" icon={LaptopIcon}>
+        <ShowcaseText
+          actions={
+            <>
+              <div className="actions">
+                <a className="button" href={quillDownload}>
+                  <DownloadIcon className="icon" />
+                  Download for Mac
+                </a>
+                <a className="button secondary" href={quillSource}>
+                  <GitHubIcon className="icon" />
+                  Source
+                </a>
+              </div>
+              <ReleaseNote {...quillRelease} note="macOS 13 or later" initial={release} />
+            </>
+          }
+        >
+          Your folders and files in a sidebar, the page in the middle, and nothing else in the way. When you want a
+          second opinion, open the terminal under the page and ask Claude Code or Codex about the note you're on.
+        </ShowcaseText>
+        <Gallery shots={macShots} label="Quill on the Mac" className="stage" />
+      </Showcase>
 
-        <section className="showcase">
-          <h2 className="section-title">
-            <LaptopIcon className="icon" />
-            Mac
-          </h2>
-          <div className="showcase-text">
-            <p>
-              Your folders and files in a sidebar, the page in the middle, and nothing else in the way. When you want a
-              second opinion, open the terminal under the page and ask Claude Code or Codex about the note you're on.
-            </p>
-            <div className="actions">
-              <a className="button" href={quillDownload}>
-                <DownloadIcon className="icon" />
-                Download for Mac
-              </a>
-              <a className="button secondary" href={quillSource}>
-                <GitHubIcon className="icon" />
-                Source
-              </a>
-            </div>
-            <ReleaseNote {...quillRelease} note="macOS 13 or later" initial={release} />
-          </div>
-          <Gallery shots={macShots} label="Quill on the Mac" className="stage" />
-        </section>
-
-        <section className="showcase" id="iphone-and-ipad">
-          <h2 className="section-title">
-            <PhoneIcon className="icon" />
-            iPhone and iPad
-          </h2>
-          <div className="showcase-text">
-            <p>
-              Open the same library from iCloud Drive and pick up a draft wherever you left it, with the same focus mode
-              and a Markdown toolbar above the keyboard.
-            </p>
+      <Showcase title="iPhone and iPad" icon={PhoneIcon} id="iphone-and-ipad">
+        <ShowcaseText
+          actions={
             <div className="actions">
               <span className="button secondary soon" aria-disabled="true">
                 Coming soon to the App Store
               </span>
             </div>
-          </div>
-          <Gallery shots={deviceShots} label="Quill on iPhone and iPad" className="stage devices" />
-        </section>
-      </main>
-
-      <Footer />
-    </>
+          }
+        >
+          Open the same library from iCloud Drive and pick up a draft wherever you left it, with the same focus mode
+          and a Markdown toolbar above the keyboard.
+        </ShowcaseText>
+        <Gallery shots={deviceShots} label="Quill on iPhone and iPad" className="stage devices" />
+      </Showcase>
+    </ProductPage>
   );
 }

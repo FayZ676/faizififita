@@ -3,6 +3,8 @@ import { latestRelease } from "./release";
 import { ReleaseNote } from "./release-note";
 import { DownloadIcon, ExternalIcon, GitHubIcon } from "./icons";
 import { quillDownload, quillRelease, quillSource } from "./quill/release";
+import { triviaUrl } from "./trivia/release";
+import { versesAppStore } from "./verses/release";
 import { Footer, Nav } from "./site";
 
 type Link = { label: string; href: string };
@@ -51,16 +53,17 @@ const projects: Project[] = [
   {
     name: "Verses",
     description:
-      "An iPhone and iPad app for memorizing Bahá'í scripture by reciting out loud or in your head.",
+      "An iPhone and iPad app for memorizing Bahá'í prayers by hiding the words you know and saying them out loud.",
     action: {
       label: "View on the App Store",
-      href: "https://apps.apple.com/us/app/verses-bah%C3%A1%C3%AD-memorization/id6788610583",
+      href: versesAppStore,
       kind: "external",
     },
-    icon: "/projects/verses-icon.webp",
+    page: "/verses",
+    icon: "/verses/icon.webp",
     media: {
-      src: "/projects/verses.webp",
-      alt: "Verses on iPhone, showing a prayer with some words hidden as blanks.",
+      src: "/verses/prayer.webp",
+      alt: "A prayer in Verses on iPhone, with the words already hidden shown lighter, above the Hide and Recite buttons.",
       width: 736,
       height: 1600,
     },
@@ -69,13 +72,14 @@ const projects: Project[] = [
     name: "Bahá'í Daily Trivia",
     description:
       "A daily Bahá'í trivia game. Five new questions every day, from easy to hard, and everyone gets the same ones. Every question cites its source in the Bahá'í Reference Library.",
-    action: { label: "Play today's questions", href: "https://www.bahaidaily.app", kind: "external" },
-    icon: "/projects/trivia-icon.svg",
+    action: { label: "Play today's questions", href: triviaUrl, kind: "external" },
+    page: "/trivia",
+    icon: "/trivia/icon.svg",
     media: {
-      src: "/projects/trivia.webp",
-      alt: "Bahá'í Daily Trivia on iPhone, showing the day's first question with four answers to choose from.",
-      width: 736,
-      height: 1593,
+      src: "/trivia/answered.webp",
+      alt: "A question answered right in Bahá'í Daily Trivia, with why it's right and a link to the passage in the Will and Testament of 'Abdu'l-Bahá.",
+      width: 1600,
+      height: 1135,
     },
   },
   {
