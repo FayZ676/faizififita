@@ -1,10 +1,11 @@
 import type { ReactNode } from "react";
 import { latestRelease } from "./release";
 import { ReleaseNote } from "./release-note";
-import { DownloadIcon, ExternalIcon, GitHubIcon } from "./icons";
+import { DownloadIcon, ExternalIcon, GitHubIcon, MailIcon } from "./icons";
 import { quillDownload, quillRelease, quillSource } from "./quill/release";
 import { triviaUrl } from "./trivia/release";
 import { versesAppStore } from "./verses/release";
+import { ContactLink } from "./contact";
 import { Footer, Nav } from "./site";
 
 type Link = { label: string; href: string };
@@ -170,6 +171,11 @@ export default async function Home() {
           <p className="bio">
             Every app I make is my way of saying <i>I have this problem too and I made you something</i>.
           </p>
+          <div className="actions">
+            <ContactLink className="button secondary" icon={<MailIcon className="icon" />}>
+              Send me an email
+            </ContactLink>
+          </div>
         </header>
 
         <h2 className="section-title">Projects</h2>
