@@ -174,7 +174,7 @@ export default async function Home() {
           </p>
           <div className="actions">
             <ContactLink className="button secondary" icon={<MailIcon className="icon" />}>
-              Send me an email
+              Email me
             </ContactLink>
           </div>
         </header>

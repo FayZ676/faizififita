@@ -128,31 +128,23 @@ button:focus-visible {
   background: var(--plate);
 }
 
-/* The one labeled link in the nav, so getting in touch doesn't hide behind an icon */
-.nav-links a.nav-contact {
-  width: auto;
-  margin-right: 8px;
-  padding: 0 14px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.nav-links a.nav-contact:hover {
-  border-color: var(--ink);
-  background: transparent;
-}
-
-/* A plain word in the nav, sized to sit with the icons */
-.nav-links a.nav-text {
+/* Words in the nav behave like its icons, just wider; the page you're in keeps its hover look */
+.nav-links a.nav-word {
   width: auto;
   padding: 0 12px;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
+}
+
+.nav-links a.nav-word[aria-current="page"] {
+  color: var(--ink);
+  background: var(--plate);
+}
+
+/* A little more room between the words and the icons */
+.nav-links a.nav-word + a:not(.nav-word) {
+  margin-left: 8px;
 }
 
 /* On small phones the words win the room, and X and YouTube wait in the footer */

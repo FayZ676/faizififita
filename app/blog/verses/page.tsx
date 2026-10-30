@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function VersesPost() {
   return (
     <>
-      <Nav />
+      <Nav section="blog" />
       <main>
         <article className="post">
           <header className="intro">
@@ -22,7 +22,7 @@ export default function VersesPost() {
             </p>
             <h1>{title}</h1>
             <p className="bio">
-              This piece comes from an interview. Claude, an AI made by Anthropic, asked Faizi about{" "}
+              This piece comes from an interview. Claude asked Faizi about{" "}
               <a href="/verses">Verses</a> and wrote up the answers. The quotes are Faizi's words, lightly trimmed.
             </p>
           </header>

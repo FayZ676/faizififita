@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <>
-      <Nav />
+      <Nav section="blog" />
       <main>
         <header className="intro">
           <h1>
             Blog. <span>Interviews about what I build.</span>
           </h1>
           <p className="bio">
-            For each piece, Claude, an AI made by Anthropic, interviews me about one of my projects, then writes it up.
+            For each piece, Claude interviews me about one of my projects, then writes it up.
             The quotes are mine, and the questions and the writing are Claude's.
           </p>
         </header>
