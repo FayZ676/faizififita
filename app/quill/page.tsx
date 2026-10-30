@@ -135,8 +135,7 @@ export default async function QuillPage() {
         <p className="bio">
           Quill is a minimal Markdown editor that combines my favorite parts of{" "}
           <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a> plus some of
-          my own thoughtful conveniences. Everything you write is a plain Markdown file in a folder you choose, so it opens in any other app, today or twenty
-          years from now.
+          my own thoughtful conveniences. Everything you write is a plain Markdown file in a folder you choose.
         </p>
       </Intro>
 

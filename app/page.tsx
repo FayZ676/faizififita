@@ -30,8 +30,9 @@ const projects: Project[] = [
     name: "Quill",
     description: (
       <>
-        A minimal Markdown editor for the Mac (and soon iPhone and iPad) that combines my favorite features from my two favorite writing apps;{" "}
-        <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a>
+        Quill is a minimal Markdown editor that combines my favorite parts of{" "}
+        <a href="https://ia.net/writer">iA Writer</a> and <a href="https://obsidian.md">Obsidian</a> plus some of my own
+        thoughtful conveniences. Everything you write is a plain Markdown file in a folder you choose.
       </>
     ),
     action: {
