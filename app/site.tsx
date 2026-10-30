@@ -15,9 +15,12 @@ export function Nav() {
           Faizi Fifita
         </a>
         <div className="nav-links">
+          <a className="nav-text" href="/blog">
+            Blog
+          </a>
           <ContactLink className="nav-contact">Send me an email</ContactLink>
           {social.map((link) => (
-            <a key={link.label} href={link.href} aria-label={link.label}>
+            <a key={link.label} className="social" href={link.href} aria-label={link.label}>
               <link.icon className="icon" />
             </a>
           ))}
@@ -32,6 +35,7 @@ export function Footer() {
     <footer className="footer">
       <p>© {new Date().getFullYear()} Faizi Fifita</p>
       <p className="footer-links">
+        <a href="/blog">Blog</a>
         <ContactLink>Email</ContactLink>
         {social.map((link) => (
           <a key={link.label} href={link.href}>
