@@ -3,6 +3,13 @@ export type Post = { slug: string; title: string; description: string; date: str
 
 export const posts: Post[] = [
   {
+    slug: "trivia",
+    title: "Three words can be enough",
+    description:
+      "Faizi always pictured reading the Writings as an hour alone with a book, an hour that never came. A week after launch, Bahá'í Daily Trivia is played about 60 times a day, and its players are already reshaping it.",
+    date: "2026-11-01",
+  },
+  {
     slug: "verses",
     title: "The Verses I meant to build",
     description:
