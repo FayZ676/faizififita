@@ -1,5 +1,6 @@
 // Every post, newest first, shared by the blog's index and each post's own page
-export type Post = { slug: string; title: string; description: string; date: string };
+// date is when a post first went up; updated, if set, is its latest revision
+export type Post = { slug: string; title: string; description: string; date: string; updated?: string };
 
 export const posts: Post[] = [
   {
@@ -15,6 +16,7 @@ export const posts: Post[] = [
     description:
       "Verses began as an afternoon's experiment to help me pray from memory. It took four months, a new way of listening, and a lot of taking things away to become the app I wanted all along.",
     date: "2026-10-30",
+    updated: "2026-11-02",
   },
 ];
 

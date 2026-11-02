@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Footer, Nav } from "../../site";
+import { versesAppStore } from "../../verses/release";
 import { formatDate, post } from "../posts";
 
-const { title, description, date } = post("verses");
+const { title, description, date, updated } = post("verses");
 
 export const metadata: Metadata = {
   title,
@@ -19,6 +20,12 @@ export default function VersesPost() {
           <header className="intro">
             <p className="post-meta">
               <a href="/blog">Blog</a> · <time dateTime={date}>{formatDate(date)}</time>
+              {updated && (
+                <>
+                  {" "}
+                  · Updated <time dateTime={updated}>{formatDate(updated)}</time>
+                </>
+              )}
             </p>
             <h1>{title}</h1>
             <p className="bio">
@@ -134,9 +141,10 @@ export default function VersesPost() {
             that. I felt that exact same way."
           </p>
           <p>
-            Verses 2.0 is with Apple for review now and should be on the App Store within the week. In Faizi's words,
-            it's the Verses "that I wanted to release all along."
+            Verses 2.0 is out now on the <a href={versesAppStore}>App Store</a>. In Faizi's words, it's the Verses "that
+            I wanted to release all along."
           </p>
+          <p>An Android version is built too, and Faizi is working on getting it onto the Play Store.</p>
 
           <h2>For the youth</h2>
           <p>
