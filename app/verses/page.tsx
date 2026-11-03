@@ -11,6 +11,7 @@ import {
 } from "../icons";
 import { Gallery, type Shot } from "../gallery";
 import { Features, Intro, ProductPage, Showcase, ShowcaseText, type Feature } from "../product";
+import { VersesInterview } from "./interview";
 import { versesAppStore } from "./release";
 
 const description =
@@ -128,6 +129,13 @@ export default function VersesPage() {
           Nothing is locked and nothing is timed. Hide what you know, read what you don't, and come back tomorrow.
         </ShowcaseText>
         <Gallery shots={shots} label="Verses on iPhone" className="stage devices" />
+      </Showcase>
+
+      <Showcase title="Interview" icon={MicIcon}>
+        <ShowcaseText>Bahá'í Blog sat down with me to talk about Verses.</ShowcaseText>
+        <div className="stage">
+          <VersesInterview />
+        </div>
       </Showcase>
     </ProductPage>
   );

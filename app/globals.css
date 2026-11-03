@@ -443,6 +443,16 @@ a.plate:hover img {
   box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(0 0 0 / 0.04), 0 24px 56px -12px rgb(0 0 0 / 0.22);
 }
 
+/* An embedded video, kept to its own shape at any width */
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(0 0 0 / 0.04), 0 24px 56px -12px rgb(0 0 0 / 0.22);
+}
+
 .stage .mac {
   border-radius: 12px;
 }
@@ -642,6 +652,10 @@ a.plate:hover img {
   border-left: 2px solid var(--ink);
   font-size: 1.125rem;
   line-height: 1.5;
+}
+
+.post > .video {
+  margin-top: 28px;
 }
 
 .post > .actions {

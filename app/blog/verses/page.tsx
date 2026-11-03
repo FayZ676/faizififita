@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Footer, Nav } from "../../site";
+import { VersesInterview } from "../../verses/interview";
 import { versesAppStore } from "../../verses/release";
 import { formatDate, post } from "../posts";
 
@@ -158,6 +159,10 @@ export default function VersesPost() {
             As long as you feel that what you're saying and what you're doing can feed your soul, you're doing the right
             thing. Just do it as much as you can.
           </blockquote>
+
+          <h2>Watch the interview</h2>
+          <p>Faizi also talked about Verses with Bahá'í Blog, on video.</p>
+          <VersesInterview />
 
           <div className="actions">
             <a className="button" href="/verses">
