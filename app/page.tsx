@@ -15,7 +15,7 @@ type Project = {
   description: ReactNode;
   // "download" saves a file, "github" opens the repo, "external" opens another site
   action: Link & { kind: "download" | "github" | "external"; note?: string };
-  // Another way to get it, shown beside the main action
+  // Another way to get it, shown beside the first, just as prominent
   also?: Project["action"];
   // A GitHub repo and release download whose version and size join the note
   release?: { repo: string; asset: string };
@@ -131,9 +131,9 @@ function Media({ media }: { media: Project["media"] }) {
   );
 }
 
-function ActionButton({ action, secondary }: { action: Project["action"]; secondary?: boolean }) {
+function ActionButton({ action }: { action: Project["action"] }) {
   return (
-    <a className={secondary ? "button secondary" : "button"} href={action.href}>
+    <a className="button" href={action.href}>
       {action.kind === "download" && <DownloadIcon className="icon" />}
       {action.kind === "github" && <GitHubIcon className="icon" />}
       {action.label}
@@ -207,7 +207,7 @@ export default async function Home() {
               <p>{project.description}</p>
               <div className="actions">
                 <ActionButton action={project.action} />
-                {project.also && <ActionButton action={project.also} secondary />}
+                {project.also && <ActionButton action={project.also} />}
               </div>
               {project.release ? (
                 <ReleaseNote {...project.release} note={project.action.note ?? ""} initial={releases[i] ?? null} />
