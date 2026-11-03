@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { latestRelease } from "./release";
 import { ReleaseNote } from "./release-note";
 import { DownloadIcon, ExternalIcon, GitHubIcon, MailIcon } from "./icons";
-import { quillDownload, quillRelease, quillSource } from "./quill/release";
+import { quillAppStore, quillDownload, quillRelease } from "./quill/release";
 import { triviaUrl } from "./trivia/release";
 import { versesAppStore } from "./verses/release";
 import { ContactLink } from "./contact";
@@ -15,9 +15,10 @@ type Project = {
   description: ReactNode;
   // "download" saves a file, "github" opens the repo, "external" opens another site
   action: Link & { kind: "download" | "github" | "external"; note?: string };
+  // Another way to get it, shown beside the main action
+  also?: Project["action"];
   // A GitHub repo and release download whose version and size join the note
   release?: { repo: string; asset: string };
-  source?: string;
   // The app's icon, shown beside its name
   icon?: string;
   // A page of its own that the name and screenshot link to
@@ -41,8 +42,8 @@ const projects: Project[] = [
       kind: "download",
       note: "macOS 13 or later",
     },
+    also: { label: "App Store", href: quillAppStore, kind: "external" },
     release: quillRelease,
-    source: quillSource,
     page: "/quill",
     icon: "/quill/icon.webp",
     media: {
@@ -130,9 +131,9 @@ function Media({ media }: { media: Project["media"] }) {
   );
 }
 
-function ActionButton({ action }: { action: Project["action"] }) {
+function ActionButton({ action, secondary }: { action: Project["action"]; secondary?: boolean }) {
   return (
-    <a className="button" href={action.href}>
+    <a className={secondary ? "button secondary" : "button"} href={action.href}>
       {action.kind === "download" && <DownloadIcon className="icon" />}
       {action.kind === "github" && <GitHubIcon className="icon" />}
       {action.label}
@@ -206,12 +207,7 @@ export default async function Home() {
               <p>{project.description}</p>
               <div className="actions">
                 <ActionButton action={project.action} />
-                {project.source && (
-                  <a className="button secondary" href={project.source}>
-                    <GitHubIcon className="icon" />
-                    Source
-                  </a>
-                )}
+                {project.also && <ActionButton action={project.also} secondary />}
               </div>
               {project.release ? (
                 <ReleaseNote {...project.release} note={project.action.note ?? ""} initial={releases[i] ?? null} />
