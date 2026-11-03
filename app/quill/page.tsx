@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   CloudIcon,
   DownloadIcon,
+  ExternalIcon,
   EyeIcon,
   FileTextIcon,
   GitHubIcon,
@@ -15,7 +16,7 @@ import { latestRelease } from "../release";
 import { Gallery, type Shot } from "../gallery";
 import { Features, Intro, ProductPage, Showcase, ShowcaseText, type Feature } from "../product";
 import { ReleaseNote } from "../release-note";
-import { quillDownload, quillRelease, quillSource } from "./release";
+import { quillAppStore, quillDownload, quillRelease, quillSource } from "./release";
 
 const description =
   "Quill is a minimal Markdown editor for the Mac, iPhone and iPad, with focus mode, typewriter scrolling and a terminal for Claude Code or Codex.";
@@ -50,7 +51,7 @@ const features: Feature[] = [
     icon: CloudIcon,
     text: (
       <>
-        Keep your library in iCloud Drive and your files are there on every Mac, and soon your{" "}
+        Keep your library in iCloud Drive and your files are there on every Mac,{" "}
         <a href="#iphone-and-ipad">iPhone and iPad</a>.
       </>
     ),
@@ -169,9 +170,10 @@ export default async function QuillPage() {
         <ShowcaseText
           actions={
             <div className="actions">
-              <span className="button secondary soon" aria-disabled="true">
-                Coming soon to the App Store
-              </span>
+              <a className="button" href={quillAppStore}>
+                View on the App Store
+                <ExternalIcon className="icon" />
+              </a>
             </div>
           }
         >

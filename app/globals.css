@@ -570,15 +570,6 @@ a.plate:hover img {
   background: var(--ink);
 }
 
-/* Not out yet: looks like a button but does nothing */
-.button.soon,
-.button.soon:hover {
-  border-style: dashed;
-  border-color: var(--line-strong);
-  color: var(--quiet);
-  cursor: default;
-}
-
 /* Blog: a list of posts, then each post as a column of prose at a reading width */
 
 .post-list {
