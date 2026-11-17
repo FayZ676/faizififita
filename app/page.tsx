@@ -86,6 +86,18 @@ const projects: Project[] = [
     },
   },
   {
+    name: "Bahá'í Apps",
+    description:
+      "A directory of apps made by Bahá'ís, for prayer, study, the calendar, and more. Search by topic and language, share an idea for an app someone should build, or add your own.",
+    action: { label: "Browse the apps", href: "https://www.bahaiapps.com", kind: "external" },
+    media: {
+      src: "/bahaiapps/catalog.webp",
+      alt: "The Bahá'í Apps catalog: a search bar with topic and language filters above a grid of apps, each with its icon and a line about it.",
+      width: 1600,
+      height: 1135,
+    },
+  },
+  {
     name: "/job",
     description:
       "A free, open-source job search and networking tool that runs on Claude Code and Next JS. It finds leads, their email addresses, and helps you draft cold emails.",
